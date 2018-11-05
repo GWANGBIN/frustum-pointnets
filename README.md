@@ -25,6 +25,8 @@ Install <a href="https://www.tensorflow.org/install/">TensorFlow</a>.There are a
 
 To use the Frustum PointNets v2 model, we need access to a few custom Tensorflow operators from PointNet++. The TF operators are included under `models/tf_ops`, you need to compile them (check `tf_xxx_compile.sh` under each ops subfolder) first. Update `nvcc` and `python` path if necessary. The compile script is written for TF1.4. There is also an option for TF1.2 in the script. If you are using earlier version it's possible that you need to remove the `-D_GLIBCXX_USE_CXX11_ABI=0` flag in g++ command in order to compile correctly.
 
+It doesn't really seem that the operation of the library is strongly affected by the version of its dependent libraries. This codes worked well under the condition of `python 2.7.12`, `tensorflow-gpu 1.11.0`, `python-opencv 2.4.9.1`, `PySide 1.2.4`, `mayavi 4.6.2`, `gnuplot 5.0 patch level 3`.
+
 If we want to evaluate 3D object detection AP (average precision), we need also to compile the evaluation code (by running `compile.sh` under `train/kitti_eval`). Check `train/kitti_eval/README.md` for details.
 
 Some of the demos require `mayavi` library. We have provided a convenient script to install `mayavi` package in Python, a handy package for 3D point cloud visualization. `pyside` or `Pyqt` is also required to run `mayavi` successfully. You can check it at `mayavi/dependencies_install.sh`. Installation of other dependent libraries for plotting such as `pdfcrop` and `gnuplot` are also included in the shell script. If the installation succeeds, you should be able to run `mayavi/test_drawline.py` as a simple demo. Note: the library works for local machines and seems do not support remote access with `ssh` or `ssh -X`.
